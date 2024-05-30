@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des personnes{% endblock %}
+
+{% block body %}
+    <h1>liste des personnes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>id</th>
+                <th>photo</th>
+                <th>nom</th>
+                <th>prenom</th>
+                {# <th>actions</th> #}
+            </tr>
+        </thead>
+        <tbody>
+        {% for persone in persones %}
+            <tr>
+                
+                <td>{{ persone.id }}</td>
+                <td><img src="{{ vich_uploader_asset(persone) }}" alt="{{ persone.nom }}"></td>
+                <td>{{ persone.nom }}</td>
+                <td>{{ persone.prenom }}</td>
+
+                {# <td>
+                    <a href="{{ path('app_lieu_vote_show', {'id': lieu_vote.id}) }}">show</a>
+                    <a href="{{ path('app_lieu_vote_edit', {'id': lieu_vote.id}) }}">edit</a>
+                </td> #}
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+
+    </table>
+
+    <a href="{{ path('app_webcam') }}">Create new</a>
+{% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Personne;
+use App\Repository\PersonneRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,7 +12,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class WebcamController extends AbstractController
 {
-    #[Route('/', name: 'app_webcam')]
+    #[Route('/', name: 'app_webcam_liste', methods: ['GET'])]
+    public function liste(EntityManagerInterface $entityManagerInterface,
+    PersonneRepository $personneRepository): Response
+    {
+
+        return $this->render('webcam/liste.html.twig', [
+            'persones' => $personneRepository->findBy([]),
+        ]);
+    }
+
+    #[Route('/webcam', name: 'app_webcam')]
     public function index(EntityManagerInterface $entityManagerInterface): Response
     {
 
@@ -37,4 +48,5 @@ class WebcamController extends AbstractController
             'controller_name' => 'WebcamController',
         ]);
     }
+
 }

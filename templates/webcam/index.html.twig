@@ -19,7 +19,7 @@
         <button type="button" onclick="saveSnap();">Save</button>
         <br>
 
-        <a href="image.php"> <button type="button" name="button"> Go To Image Database Page &#x2192</button> </a>
+        <a href="{{path('app_webcam_liste')}}"> <button type="button" name="button"> Go To Image Database Page &#x2192</button> </a>
     </div>
     
     <!-- script -->
@@ -53,7 +53,7 @@
 
                 function(code,text){
                     alert('Save Successfully');
-                }
+                })
 
             );
         }
